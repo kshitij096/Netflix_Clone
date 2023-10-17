@@ -9,6 +9,7 @@ import { db } from "../firebase";
 
 const Movie = ({ item }) => {
   const [likes, setLikes] = useState(false);
+  // eslint-disable-next-line no-unused-vars
   const [saved, setSaved] = useState(false);
   const [trailerUrl, setTrailerUrl] = useState("");
   const { user } = UserAuth();
@@ -21,9 +22,9 @@ const Movie = ({ item }) => {
       setSaved(true);
       await updateDoc(movieID, {
         savedShows: arrayUnion({
-          id: item.id,
-          title: item.title,
-          img: item.backdrop_path,
+          id: item?.id,
+          title: item?.title,
+          img: item?.backdrop_path,
         }),
       });
     } else {
