@@ -7,6 +7,17 @@ import { UserAuth } from "../context/AuthContext";
 import { arrayUnion, doc, updateDoc } from "firebase/firestore";
 import { db } from "../firebase";
 
+// const customStyles = {
+//   content: {
+//     top: "50%",
+//     left: "50%",
+//     right: "auto",
+//     bottom: "auto",
+//     marginRight: "-50%",
+//     transform: "translate(-50%, -50%)",
+//   },
+// };
+
 const Movie = ({ item }) => {
   const [likes, setLikes] = useState(false);
   // eslint-disable-next-line no-unused-vars
@@ -24,7 +35,7 @@ const Movie = ({ item }) => {
         savedShows: arrayUnion({
           id: item?.id,
           title: item?.title,
-          img: item?.backdrop_path,
+          img: item?.poster_path,
         }),
       });
     } else {
@@ -32,8 +43,12 @@ const Movie = ({ item }) => {
     }
   };
   const opts = {
-    height: "390",
-    width: "100%",
+    top: "50%",
+    left: "50%",
+    right: "auto",
+    bottom: "auto",
+    marginRight: "-50%",
+    transform: "translate(-50%, -50%)",
     playerVars: {
       // https://developers.google.com/youtube/player_parameters
       autoplay: 1,
@@ -56,20 +71,19 @@ const Movie = ({ item }) => {
   };
 
   return (
-    <div className="w-[160px] sm:w-[200px] md:w-[240px] lg:w-[280px] inline-block cursor-pointer relative p-2">
+    <div
+      onClick={() => handleMovieTrailer(item)}
+      className="w-[160px] sm:w-[200px] md:w-[240px] lg:w-[280px] inline-block cursor-pointer relative p-2"
+    >
       <img
-        // onClick={() => handleMovieTrailer(item)}
-        className="w-full h-auto block cursor-pointer"
-        src={`https://image.tmdb.org/t/p/w500/${item?.backdrop_path}`}
+        className="w-[300px] h-[300px] inline-block cursor-pointer"
+        src={`https://image.tmdb.org/t/p/w500/${item?.poster_path}`}
         alt={item?.title}
         value={item?.name}
       />
       <div className="absolute top-0 left-0 w-full h-full hover:bg-black/80 opacity-0 hover:opacity-100 text-white">
         {user?.email ? (
-          <p
-            onClick={() => handleMovieTrailer(item)}
-            className="white-space-normal text-xs overflow-hidden md:text-sm font-bold flex justify-center items-center h-full text-center"
-          >
+          <p className="white-space-normal text-xs overflow-hidden md:text-sm font-bold flex justify-center items-center h-full text-center">
             {item?.title}
           </p>
         ) : (

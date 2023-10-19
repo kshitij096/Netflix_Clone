@@ -1,5 +1,7 @@
 import { Link, useNavigate } from "react-router-dom";
 import { UserAuth } from "../context/AuthContext";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const Navbar = () => {
   const { user, logOut } = UserAuth();
@@ -9,6 +11,9 @@ const Navbar = () => {
   const handleLogout = async () => {
     try {
       await logOut();
+      toast.success("Logout Successfully", {
+        theme: "dark",
+      });
       navigate("/login");
     } catch (error) {
       console.log(error);
@@ -22,6 +27,7 @@ const Navbar = () => {
           NETFLIX
         </h1>
       </Link>
+      <ToastContainer autoClose={2000} />
       {user?.email ? (
         <div>
           <Link to="/account">

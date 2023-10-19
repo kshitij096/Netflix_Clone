@@ -1,6 +1,9 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { UserAuth } from "../context/AuthContext";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+// import { auth } from "../firebase";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -15,15 +18,34 @@ const Login = () => {
     setError("");
     try {
       await logIn(email, password);
+
+      // console.log(auth);
+
       navigate("/");
+      toast.success("LogIn Successfully", {
+        theme: "dark",
+      });
     } catch (error) {
-      console.log(error);
-      setError(error.message);
+      // console.log(error);
+      const errorCode = error.code;
+      switch (errorCode) {
+        case "auth/user-not-found":
+          setError("User not found or not registered");
+          break;
+        case "auth/wrong-password":
+          setError("Incorrect password");
+          break;
+        default:
+          setError(error.message);
+          break;
+      }
     }
   };
 
   return (
     <div className="w-full h-screen">
+      <ToastContainer autoClose={2000} />
+
       <img
         className="hidden sm:block absolute w-full h-full object-cover"
         src="https://assets.nflxext.com/ffe/siteui/vlv3/f841d4c7-10e1-40af-bcae-07a3f8dc141a/f6d7434e-d6de-4185-a6d4-c77a2d08737b/US-en-20220502-popsignuptwoweeks-perspective_alpha_website_medium.jpg"

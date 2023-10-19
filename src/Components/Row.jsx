@@ -5,6 +5,7 @@ import Movie from "./Movie";
 
 // eslint-disable-next-line react/prop-types
 export default function Row({ title, fetchURL, rowID }) {
+  // console.log(title);
   const [movies, setMovies] = useState([]);
 
   useEffect(() => {
