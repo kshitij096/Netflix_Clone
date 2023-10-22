@@ -4,8 +4,8 @@ import axios from "axios";
 import { UserAuth } from "../context/AuthContext";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import Youtube from "react-youtube";
-import movieTrailer from "movie-trailer";
+// import Youtube from "react-youtube";
+// import movieTrailer from "movie-trailer";
 import Modal from "react-modal";
 
 const customStyles = {
@@ -22,7 +22,7 @@ const customStyles = {
 function Main() {
   const [movies, setMovies] = useState([]);
   const { user } = UserAuth();
-  const [trailerUrl, setTrailerUrl] = useState("");
+  // const [trailerUrl, setTrailerUrl] = useState("");
   const movie = movies[Math.floor(Math.random() * movies.length)];
 
   useEffect(() => {
@@ -47,19 +47,19 @@ function Main() {
     }
 
     setIsOpen(true);
-    if (!trailerUrl) {
-      try {
-        const url = await movieTrailer(
-          movie?.name || movie?.title || movie?.original_title || ""
-        );
-        const urlParams = new URLSearchParams(new URL(url).search);
-        setTrailerUrl(urlParams.get("v"));
-      } catch (error) {
-        console.log(error);
-      }
-    } else {
-      setTrailerUrl("");
-    }
+    // if (!trailerUrl) {
+    //   try {
+    //     const url = await movieTrailer(
+    //       movie?.name || movie?.title || movie?.original_title || ""
+    //     );
+    //     const urlParams = new URLSearchParams(new URL(url).search);
+    //     setTrailerUrl(urlParams.get("v"));
+    //   } catch (error) {
+    //     console.log(error);
+    //   }
+    // } else {
+    //   setTrailerUrl("");
+    // }
   };
 
   const afterOpenModal = () => {
@@ -69,6 +69,18 @@ function Main() {
   const closeModal = () => {
     setIsOpen(false);
   };
+
+  const [test, setTest] = useState(false);
+
+  const fun = () => {
+    setTest(!test);
+    setIsOpen(false);
+  };
+
+  useEffect(() => {
+    console.log(modalIsOpen);
+    console.log(test);
+  }, [modalIsOpen, test]);
 
   return (
     <div className="w-full h-[600px] text-white">
@@ -88,21 +100,25 @@ function Main() {
               className="border text-white border-gray-300 py-2 px-5 ml-4"
             >
               Play Trailer
-            </button>
-            <Modal
-              isOpen={modalIsOpen}
-              onAfterOpen={afterOpenModal}
-              onRequestClose={closeModal}
-              style={customStyles}
-              contentLabel="Example Modal"
-            >
-              <h2 ref={(_subtitle) => (subtitle = _subtitle)}></h2>
-              {trailerUrl && (
-                <div className="mt-2">
-                  <Youtube videoId={trailerUrl} opts={customStyles} />
+              <Modal
+                isOpen={modalIsOpen}
+                onAfterOpen={afterOpenModal}
+                onRequestClose={closeModal}
+                style={customStyles}
+                contentLabel="Example Modal"
+              >
+                <h2 ref={(_subtitle) => (subtitle = _subtitle)}></h2>
+                {/* {trailerUrl && (
+                  <div className="mt-2">
+                    <Youtube videoId={trailerUrl} opts={customStyles} />
+                  </div>
+                )} */}
+                <div className=" w-[20rem] h-[10rem] bg-red-300">
+                  sometingh<button onClick={fun}>close</button>
                 </div>
-              )}
-            </Modal>
+              </Modal>
+            </button>
+
             <button className="border text-white border-gray-300 py-2 px-5 ml-4">
               Watch Later
             </button>
