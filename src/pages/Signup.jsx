@@ -1,8 +1,12 @@
-import { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import { UserAuth } from "../context/AuthContext";
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+import {
+  useState,
+  Link,
+  useNavigate,
+  UserAuth,
+  ToastContainer,
+  toast,
+} from "../Components/index";
+// import "react-toastify/dist/ReactToastify.css";
 // import { auth } from "../firebase";
 
 const Signup = () => {

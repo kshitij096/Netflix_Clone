@@ -1,8 +1,12 @@
-import { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import { UserAuth } from "../context/AuthContext";
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+import {
+  useState,
+  useNavigate,
+  UserAuth,
+  ToastContainer,
+  toast,
+} from "../Components/index";
+
+// import "react-toastify/dist/ReactToastify.css";
 // import { auth } from "../firebase";
 
 const Login = () => {
@@ -76,16 +80,26 @@ const Login = () => {
               <button className="bg-red-600 py-3 my-6 rounded font-bold">
                 Sign In
               </button>
-              <div className="flex justify-between items-center text-sm text-gray-600">
+              <div className="flex justify-between items-center text-sm text-gray-500">
                 <p>
                   <input className="mr-2" type="checkbox" />
                   Remember me
                 </p>
                 <p>Need Help?</p>
               </div>
-              <p className="py-8">
-                <span className="text-gray-600">New to Netflix?</span>{" "}
-                <Link to="/signup">Sign Up</Link>
+              <p className="py-4">
+                <span className="text-gray-500">New to Netflix?</span>{" "}
+                {/* <Link to="/signup">Sign Up</Link> */}
+              </p>
+              <p className="bg-red-800">
+                <span className="text-gray-400 ">
+                  For Test Purpose Only Sign In option is there- Please Login
+                  Using Email and Password Provided Below<br></br>{" "}
+                  <span className="text-gray-300 ">
+                    Email - test@test.com <br></br>
+                    Password - 123456
+                  </span>
+                </span>{" "}
               </p>
             </form>
           </div>

@@ -1,7 +1,5 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, axios, Movie } from "../Components/index";
 import { MdChevronLeft, MdChevronRight } from "react-icons/md";
-import axios from "axios";
-import Movie from "./Movie";
 
 // eslint-disable-next-line react/prop-types
 export default function Row({ title, fetchURL, rowID }) {

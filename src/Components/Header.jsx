@@ -1,7 +1,7 @@
 import { Link, useNavigate } from "react-router-dom";
 import { UserAuth } from "../context/AuthContext";
 import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+// import "react-toastify/dist/ReactToastify.css";
 
 const Navbar = () => {
   const { user, logOut } = UserAuth();
@@ -18,6 +18,14 @@ const Navbar = () => {
     } catch (error) {
       console.log(error);
     }
+  };
+  const handleSignUp = () => {
+    toast.success(
+      "SignUp functionality is Disabled. Please Proceed to Sign In. Credentials are Provided There.",
+      {
+        theme: "dark",
+      }
+    );
   };
 
   return (
@@ -42,12 +50,16 @@ const Navbar = () => {
         </div>
       ) : (
         <div>
+          <button
+            onClick={handleSignUp}
+            className="text-white pr-4 border-2 px-4 py-[6px] rounded mr-2"
+          >
+            Sign Up
+          </button>
+
           <Link to="/login">
-            <button className="text-white pr-4">Sign In</button>
-          </Link>
-          <Link to="/signup">
-            <button className="bg-red-600 px-6 py-2 rounded cursor-pointer text-white">
-              Sign Up
+            <button className="bg-red-600 hover:bg-red-700 px-6 py-2 rounded cursor-pointer text-white">
+              Sign In
             </button>
           </Link>
         </div>
