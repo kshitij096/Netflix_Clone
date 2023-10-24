@@ -11,14 +11,15 @@ import {
   Button,
   Modal,
 } from "../Components/index";
-// import "react-toastify/dist/ReactToastify.css";
+import "react-toastify/dist/ReactToastify.css";
 
 const style = {
   position: "absolute",
   top: "50%",
   left: "50%",
   transform: "translate(-50%, -50%)",
-  width: 800,
+  width: 1000,
+  height: 500,
   bgcolor: "background.paper",
   border: "2px solid #000",
   boxShadow: 24,
@@ -32,6 +33,7 @@ const Main = () => {
 
   useEffect(() => {
     axios.get(requests.requestPopular).then((response) => {
+      console.log(response.data.results);
       setMovies(
         response.data.results[
           Math.floor(Math.random() * response.data.results.length)

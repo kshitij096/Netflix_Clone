@@ -6,7 +6,7 @@ import {
   ToastContainer,
   toast,
 } from "../Components/index";
-// import "react-toastify/dist/ReactToastify.css";
+import "react-toastify/dist/ReactToastify.css";
 // import { auth } from "../firebase";
 
 const Signup = () => {

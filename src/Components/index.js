@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { Navigate, Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import requests from "../Request";
-import toast1 from "react-toastify/dist/ReactToastify.css";
+// import toast1 from "react-toastify/dist/ReactToastify.css";
 import Youtube from "react-youtube";
 import movieTrailer from "movie-trailer";
 import Button from "@mui/material/Button";
@@ -24,7 +24,6 @@ export {
   Link,
   axios,
   requests,
-  toast1,
   Youtube,
   movieTrailer,
   Button,
