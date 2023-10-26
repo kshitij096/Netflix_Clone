@@ -20,11 +20,13 @@ const style = {
   top: "50%",
   left: "50%",
   transform: "translate(-50%, -50%)",
-  width: 800,
+  width: "100%",
+  height: "400px",
   bgcolor: "background.paper",
   border: "2px solid #000",
   boxShadow: 24,
   p: 4,
+  // Adjust the margin value as needed
 };
 
 const Movie = ({ item }) => {
@@ -80,14 +82,14 @@ const Movie = ({ item }) => {
   };
 
   return (
-    <div className="w-[160px] sm:w-[200px] md:w-[240px] lg:w-[280px] inline-block cursor-pointer relative p-2">
+    <div className="w-[180px] sm:w-[200px] md:w-[240px] lg:w-[260px] inline-block cursor-pointer relative p-2">
       <Modal
         open={!!trailerUrl}
         onClose={handleClose}
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
       >
-        <div style={style}>
+        <div className="relative aspect-w-16 aspect-h-9 top-1/2 left-1/2 mr-3 transform -translate-x-1/2 -translate-y-1/2  sm:w-3/4 sm:h-2/5 md:h-1/2 lg:w-2/3 lg:h-1/2 xl:w-3/4 xl:h-2/3">
           {trailerUrl && <Youtube videoId={trailerUrl} opts={style} />}
           <Button variant="contained" onClick={handleClose}>
             Close
@@ -95,7 +97,7 @@ const Movie = ({ item }) => {
         </div>
       </Modal>
       <img
-        className="w-[300px] h-[300px] inline-block cursor-pointer"
+        className="  sm:w-[300px] sm:h-[300px] inline-block cursor-pointer"
         src={`https://image.tmdb.org/t/p/w500/${item?.poster_path}`}
         alt={item?.title}
         value={item?.name}
@@ -111,7 +113,7 @@ const Movie = ({ item }) => {
         ) : (
           <p
             onClick={() => handleOpen(item)}
-            className="wwhitespace-pre-line p-2 text-xs md:text-sm font-bold flex justify-center items-center h-full text-center"
+            className="whitespace-pre-line p-2 text-xs md:text-sm font-bold flex justify-center items-center h-full text-center"
           >
             {item?.title}
           </p>

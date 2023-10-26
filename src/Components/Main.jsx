@@ -18,12 +18,13 @@ const style = {
   top: "50%",
   left: "50%",
   transform: "translate(-50%, -50%)",
-  width: 1000,
-  height: 500,
+  width: "100%",
+  height: "400px",
   bgcolor: "background.paper",
   border: "2px solid #000",
   boxShadow: 24,
   p: 4,
+  // Adjust the margin value as needed
 };
 
 const Main = () => {
@@ -33,7 +34,7 @@ const Main = () => {
 
   useEffect(() => {
     axios.get(requests.requestPopular).then((response) => {
-      console.log(response.data.results);
+      // console.log(response.data.results);
       setMovies(
         response.data.results[
           Math.floor(Math.random() * response.data.results.length)
@@ -107,7 +108,7 @@ const Main = () => {
               aria-labelledby="modal-modal-title"
               aria-describedby="modal-modal-description"
             >
-              <div style={style}>
+              <div className="relative aspect-w-16 aspect-h-9 top-1/2 left-1/2 mr-3 transform -translate-x-1/2 -translate-y-1/2  sm:w-3/4 sm:h-2/5 md:h-1/2 lg:w-2/3 lg:h-1/2 xl:w-3/4 xl:h-2/3">
                 {trailerUrl && <Youtube videoId={trailerUrl} opts={style} />}
                 <Button variant="contained" onClick={handleClose}>
                   Close
